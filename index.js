@@ -39,7 +39,17 @@ const run = async () => {
       res.send(result);
     });
 
-
+    app.put('/completeTask/:id', async (req, res) => {
+      const id = req.params.id;
+      const completeTask = req.body;
+      const filter = { _id: ObjectId(id) };
+      const option = { upsert: true };
+      const updateDoc = {
+        $set: completeTask,
+      };
+      const result = await taskCollection.updateOne(filter, updateDoc, option);
+      res.send(result);
+    });
   } finally {
   }
 };
