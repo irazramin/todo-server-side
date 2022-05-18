@@ -27,7 +27,12 @@ const run = async () => {
       res.send(result);
     });
 
-   
+    app.get('/addtask', async (req, res) => {
+      const query = {};
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
+
   } finally {
   }
 };
