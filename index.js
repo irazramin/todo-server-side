@@ -21,6 +21,12 @@ const run = async () => {
   const taskCollection = client.db('todoDb').collection('taskCollection');
 
   try {
+    app.post('/addtask', async (req, res) => {
+      const task = req.body;
+      const result = await taskCollection.insertOne(task);
+      res.send(result);
+    });
+
    
   } finally {
   }
